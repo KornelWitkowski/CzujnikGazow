@@ -1,0 +1,34 @@
+setuptools.setup(
+    name="car_spotter",
+    packages=setuptools.find_packages(),
+    scripts=["manage.py"],
+    install_requires=[
+        "beautifulsoup4==4.9.3",
+        "requests==2.25.1",
+        "djsetuptools.setup(
+    name="car_spotter",
+    packages=setuptools.find_packages(),
+    scripts=["manage.py"],
+    install_requires=[
+        "beautifulsoup4==4.9.3",
+        "requests==2.25.1",
+        "django==3.2.5",
+        "djangorestframework==3.12.4",
+        "pydantic==1.8.2",
+        "forex-python==1.6.0",
+    ],
+    extras_require={
+        "test": [
+            "black==21.6b0",
+            "flake8==3.9.2",
+            "mccabe==0.6.1",
+            "flake8-import-order==0.18.1",
+            "mypy==0.910",
+            "pytest==6.2.4",
+            "pytest-django==4.4.0",
+            "towncrier==21.3.0",
+            "mock==4.0.3",
+        ]
+    },
+    python_requires=">=3.8.0",
+)
