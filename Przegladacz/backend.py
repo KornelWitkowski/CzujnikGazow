@@ -5,7 +5,6 @@ import pandas as pd
 import keras.backend as keras
 import tensorflow as tf
 
-
 def compare_numpy_arrays_columns_with_nan(arr1, arr2, col_num):
     return ((arr1[:, col_num] == arr2[:, col_num])
             | (np.isnan(arr1[:, col_num])
@@ -181,7 +180,11 @@ class ConcentrationsPredictor:
             self.model=None
             return
 
-        model = tf.keras.models.load_model(path, custom_objects={"custom_loss": custom_loss}) if path else None
+        p_multipler = np.ones(2048 + 2)
+        p_multipler[1] = 10000
+
+        model = tf.keras.models.load_model(path, custom_objects={"custom_loss":
+                                                custom_loss, "p_multipler" : p_multipler}) if path else None
         input_shape = model.layers[0].get_input_at(0).get_shape().as_list()[1]
         output_shape = model.layers[-1].get_output_at(0).get_shape().as_list()[1]
 
@@ -196,6 +199,7 @@ class ConcentrationsPredictor:
         return
 
     def predict_concentrations(self, spectrum):
+
         if self.model is not None:
             if self.input_shape == 2048:
                 if spectrum.shape[0] == 2050:
